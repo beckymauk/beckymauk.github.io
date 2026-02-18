@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Becky Mauk</title>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+      padding: 80px 20px;
+      background-color: #f7f4ef;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+
+    #quote {
+      font-size: 22px;
+      font-style: italic;
+      margin-top: 30px;
+      min-height: 40px;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Hi. I'm Becky.</h1>
+  <p>Thanks for stopping by. I hope you have a great day.</p>
+
+  <div id="quote"></div>
+  <button onclick="newQuote()">Give me something good</button>
+
+  <script>
+    const quotes = [
+      "You are allowed to evolve.",
+      "Calm is power.",
+      "Soft does not mean weak.",
+      "You can start again as many times as you need.",
+      "Your growth is not obnoxious.",
+      "You are building something real.",
+      "Peace looks good on you.",
+      "Everything does not have to be solved today."
+    ];
+
+    function newQuote() {
+      const random = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote").innerText = quotes[random];
+    }
+
+    // Show one immediately when page loads
+    newQuote();
+  </script>
+
+</body>
+</html>
