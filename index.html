@@ -5,67 +5,201 @@
   <title>Becky Mauk</title>
 
   <style>
+    /* Page background + global typography */
     body {
-      background-color: #f7f4f1;
+      min-height: 100vh;
+      margin: 0;
+
+      /* Soft gradient background */
+      background: linear-gradient(180deg, #f9f6fb 0%, #f7f4f1 100%);
+
       color: #2b2b2b;
       font-family: Arial, sans-serif;
-  position: relative;
-}
 
-body::before {
-  content: "";
-  position: fixed;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #e7c8c8 0%, transparent 70%);
-  top: -100px;
-  right: -100px;
-  filter: blur(120px);
-  z-index: -1;
+      /* Center everything */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      position: relative;
+    }
+
+    /* Cozy width + padding so it looks good on phones and desktop */
+    .container {
+      width: min(720px, 92vw);
+      padding: 48px 20px;
     }
 
     h1 {
       font-size: 42px;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
+      letter-spacing: 0.2px;
     }
 
     p {
       font-size: 18px;
-      margin-bottom: 40px;
+      margin: 0 0 26px;
+      opacity: 0.95;
+    }
+
+    /* Soft card styling for content blocks */
+    .card {
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      border-radius: 16px;
+      padding: 22px 18px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(6px);
+      margin: 18px 0;
     }
 
     #quote {
       font-size: 22px;
       font-style: italic;
-      margin-top: 30px;
-      min-height: 40px;
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.35;
+      color: #3a3a3a;
+    }
+
+    /* Button row */
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 14px;
     }
 
     button {
-  margin-top: 30px;
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #B76E79;
-  color: #F6F1E8;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+      padding: 12px 18px;
+      font-size: 15px;
+      border: none;
+      border-radius: 14px;
+      background-color: #B76E79;
+      color: #F6F1E8;
+      cursor: pointer;
+      transition: transform 0.08s ease, background-color 0.2s ease;
+    }
 
-button:hover {
-  background-color: #A85F6A;
-}
+    button:hover {
+      background-color: #A85F6A;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    /* Smaller, secondary button style */
+    .secondary {
+      background-color: rgba(183, 110, 121, 0.15);
+      color: #2b2b2b;
+      border: 1px solid rgba(183, 110, 121, 0.35);
+    }
+
+    .secondary:hover {
+      background-color: rgba(183, 110, 121, 0.22);
+    }
+
+    /* Output areas */
+    .output-title {
+      font-size: 14px;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin: 0 0 10px;
+    }
+
+    #fact {
+      font-size: 18px;
+      min-height: 34px;
+      line-height: 1.4;
+      color: #3a3a3a;
+    }
+
+    /* Checklist */
+    .checklist {
+      display: grid;
+      gap: 10px;
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    .checklist label {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 16px;
+      line-height: 1.3;
+      color: #333;
+      cursor: pointer;
+    }
+
+    .checklist input {
+      margin-top: 3px;
+      transform: scale(1.1);
+      accent-color: #B76E79;
+    }
+
+    /* Small footer line */
+    .footer {
+      margin-top: 18px;
+      font-size: 13px;
+      opacity: 0.55;
+    }
   </style>
 </head>
 
 <body>
+  <div class="container">
 
-  <h1>Hi. I'm Becky.</h1>
-  <p>I'm glad you're here. If you're tired, stay awhile..</p>
+    <h1>Hi. I'm Becky.</h1>
+    <p>I'm glad you're here. If you're tired, stay awhile..</p>
 
-  <div id="quote"></div>
-  <button onclick="newQuote()">Click here if you are overwhelmed.</button>
+    <!-- Quotes -->
+    <div class="card">
+      <div class="output-title">A thought for right now</div>
+      <div id="quote"></div>
+
+      <div class="button-row">
+        <button onclick="newQuote()">New quote</button>
+      </div>
+    </div>
+
+    <!-- Fun Fact Generator -->
+    <div class="card">
+      <div class="output-title">Need a small distraction?</div>
+      <div id="fact"></div>
+
+      <div class="button-row">
+        <button class="secondary" onclick="newFact()">Give me a fun fact</button>
+      </div>
+    </div>
+
+    <!-- Self-care checklist -->
+    <div class="card">
+      <div class="output-title">Tiny self-care checklist</div>
+
+      <div class="checklist" id="checklist">
+        <label><input type="checkbox"> Drink a little water.</label>
+        <label><input type="checkbox"> Unclench your jaw.</label>
+        <label><input type="checkbox"> Drop your shoulders.</label>
+        <label><input type="checkbox"> Take 5 slow breaths.</label>
+        <label><input type="checkbox"> Step outside for 30 seconds (if you can).</label>
+        <label><input type="checkbox"> Do one small helpful thing for Future You.</label>
+      </div>
+
+      <div class="button-row">
+        <button class="secondary" onclick="resetChecklist()">Reset</button>
+      </div>
+    </div>
+
+    <div class="footer">soft does not mean weak.</div>
+
+  </div>
 
   <script>
     const quotes = [
@@ -86,11 +220,22 @@ button:hover {
       "You deserve peace.",
       "This is a chapter, not a whole story.",
       "Be proud of how far you've come.",
-      "You are not too much.", 
-      "You are allowed to take up space",
+      "You are not too much.",
+      "You are allowed to take up space.",
       "You are stronger than you think."
-      
-      
+    ];
+
+    const facts = [
+      "Honey never spoils — archaeologists have found edible honey in ancient tombs.",
+      "Octopuses have three hearts and blue blood.",
+      "Bananas are berries, but strawberries aren’t.",
+      "A day on Venus is longer than a year on Venus.",
+      "Some turtles can breathe through their butts (cloacal respiration).",
+      "The moon is drifting away from Earth by about 3.8 cm per year.",
+      "Wombats make cube-shaped poop (nature is unhinged).",
+      "Trees can “talk” through underground fungal networks (mycorrhizae).",
+      "Sharks are older than trees.",
+      "There are more stars in the universe than grains of sand on Earth (by many estimates)."
     ];
 
     function newQuote() {
@@ -98,8 +243,18 @@ button:hover {
       document.getElementById("quote").innerText = quotes[random];
     }
 
+    function newFact() {
+      const random = Math.floor(Math.random() * facts.length);
+      document.getElementById("fact").innerText = facts[random];
+    }
+
+    function resetChecklist() {
+      document.querySelectorAll('#checklist input[type="checkbox"]').forEach(cb => cb.checked = false);
+    }
+
     // Show one immediately when page loads
     newQuote();
+    newFact();
   </script>
 
 </body>
