@@ -6,11 +6,20 @@
 
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      text-align: center;
-      padding: 80px 20px;
-      background-color: #C98C8C;
-      color: #333;
+      background-color: #f7f4f1;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #e7c8c8 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  filter: blur(120px);
+  z-index: -1;
     }
 
     h1 {
@@ -54,7 +63,7 @@ button:hover {
   <p>I'm glad you're here. If you're tired, stay awhile..</p>
 
   <div id="quote"></div>
-  <button onclick="newQuote()">Keep going...</button>
+  <button onclick="newQuote()">Click here if you are overwhelmed.</button>
 
   <script>
     const quotes = [
